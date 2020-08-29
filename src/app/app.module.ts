@@ -13,6 +13,8 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { EventsComponent } from './events/events.component';
 import { CreateComponent } from './create/create.component';
+import { EditComponent } from './edit/edit.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { CreateComponent } from './create/create.component';
     RegisterComponent,
     LoginComponent,
     EventsComponent,
-    CreateComponent
+    CreateComponent,
+    EditComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

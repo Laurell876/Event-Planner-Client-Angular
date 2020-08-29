@@ -10,3 +10,8 @@
 #save_event_button{
     margin-top:10px
 }
+
+#name_and_delete_icon{
+    display: flex;
+    justify-content: space-between;
+}

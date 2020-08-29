@@ -1,6 +1,7 @@
 import { AuthService } from '../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
+import { HttpErrorResponse } from '@angular/common/http';
 
 
 @Component({
@@ -30,7 +31,13 @@ export class LoginComponent implements OnInit {
         localStorage.setItem("accessToken", res.accessToken);
         this._router.navigate(["/events"]);
       },
-      err => console.log(err)
+      error => {
+        if(error instanceof HttpErrorResponse) {
+          if(error.status === 401) {
+            this._router.navigate(["/login"]);
+          }
+        }
+      }
     )
   }
   

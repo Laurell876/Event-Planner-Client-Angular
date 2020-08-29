@@ -13,7 +13,7 @@ export class EventsComponent implements OnInit {
   events = [];
   constructor(private _eventsService: EventService, private _router: Router) { }
 
-  ngOnInit(): void {
+ ngOnInit(): void {
     this._eventsService.getEvents()
     .subscribe(
       res=> this.events = res,
@@ -25,6 +25,27 @@ export class EventsComponent implements OnInit {
         }
       }
     )
+  }
+
+  removeEvent(event){
+    this._eventsService.removeEvent(event)
+    .subscribe(
+      res=> {
+        window.location.reload(false); 
+      },
+      error => {
+        if(error instanceof HttpErrorResponse) {
+          if(error.status === 401) {
+            this._router.navigate(["/login"]);
+          }
+        }
+      }
+    )
+  }
+
+  goToEditEvent(event){
+    const eventId = event.eventId ? event.eventId : null;
+    this._router.navigate(["/edit", { id: eventId }])
   }
 
 

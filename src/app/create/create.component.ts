@@ -1,6 +1,7 @@
 import { Router } from '@angular/router';
 import { EventService } from './../services/event.service';
 import { Component, OnInit } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-create',
@@ -29,7 +30,11 @@ export class CreateComponent implements OnInit {
         this._router.navigate(["/events"]);
       },
       error => {
-        console.log(error);
+        if(error instanceof HttpErrorResponse) {
+          if(error.status === 401) {
+            this._router.navigate(["/login"]);
+          }
+        }
       }
     )
   }

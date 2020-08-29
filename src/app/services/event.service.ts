@@ -11,20 +11,25 @@ export class EventService {
   
   constructor(private http: HttpClient) { }
 
+  
+
   getEvents() {
-    const headers = new Headers({
-      'Content-Type': 'application/json',
-      'Authorization': "bearer " + ""
-    })
     return this.http.get<any>(this._eventsUrl)
   }
 
-  createEvent(event){
-    const headers = new Headers({
-      'Content-Type': 'application/json',
-      'Authorization': "bearer " + ""
-    })
-    return this.http.post<any>(this._eventsUrl, event)
+  getSingleEvent(eventId){
+    return this.http.get<any>(this._eventsUrl + "/" +eventId);
+  }
 
+  createEvent(event){
+    return this.http.post<any>(this._eventsUrl, event)
+  }
+
+  removeEvent(event){
+    return this.http.delete<any>(this._eventsUrl + "/" + event.eventId)
+  }
+
+  editEvent(event){
+    return this.http.put<any>(this._eventsUrl + "/" + event.eventId, event);
   }
 }
