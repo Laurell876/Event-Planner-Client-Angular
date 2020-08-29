@@ -1,5 +1,11 @@
 
 <div class="row mt-5">
+  <button type="button" class="btn btn-success mx-auto">
+    <span routerLink="/create" routerLinkActive="active">Create Event</span>
+  </button>
+</div>
+
+<div class="row mt-5">
     <div class="col-md-4 mb-3" *ngFor="let event of events">
       <div class="card text-center">
         <div class="card-body">

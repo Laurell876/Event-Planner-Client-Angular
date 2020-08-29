@@ -18,4 +18,13 @@ export class EventService {
     })
     return this.http.get<any>(this._eventsUrl)
   }
+
+  createEvent(event){
+    const headers = new Headers({
+      'Content-Type': 'application/json',
+      'Authorization': "bearer " + ""
+    })
+    return this.http.post<any>(this._eventsUrl, event)
+
+  }
 }

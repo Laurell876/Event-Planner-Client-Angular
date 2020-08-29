@@ -1,3 +1,4 @@
+import { CreateComponent } from './create/create.component';
 import { AuthGuard } from './auth.guard';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
@@ -14,6 +15,11 @@ const routes: Routes = [
   {
     path: 'events', 
     component: EventsComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'create', 
+    component: CreateComponent,
     canActivate: [AuthGuard]
   },
   {
