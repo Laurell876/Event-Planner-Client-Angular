@@ -26,4 +26,8 @@ export class AuthService {
   loggedIn() {
     return localStorage.getItem("accessToken") ? true : false;
   }
+
+  getToken() {
+    return localStorage.getItem("accessToken")
+  }
 }

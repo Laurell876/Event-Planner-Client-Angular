@@ -1,10 +1,11 @@
+import { TokenInterceptorService } from './services/token-interceptor.service';
 import { AuthGuard } from './auth.guard';
 import { EventService } from './services/event.service';
 import { AuthService } from './services/auth.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from "@angular/forms";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -25,7 +26,11 @@ import { EventsComponent } from './events/events.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [AuthService, EventService, AuthGuard],
+  providers: [AuthService, EventService, AuthGuard,{
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptorService,
+    multi: true // use multiple interceptors if required
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
