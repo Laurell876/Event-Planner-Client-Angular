@@ -8,6 +8,7 @@ import { Constants } from 'src/constants';
 export class EventService {
 
   private _eventsUrl = new Constants().baseUrl + "api/events";
+  
   constructor(private http: HttpClient) { }
 
   getEvents() {

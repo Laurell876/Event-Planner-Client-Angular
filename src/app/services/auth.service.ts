@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Constants } from "../../constants";
@@ -13,7 +14,7 @@ export class AuthService {
   private _registerUrl = new Constants().baseUrl + "api/user";
   private _loginUrl = new Constants().baseUrl + "api/auth";
 
-  constructor(private  http:HttpClient) { }
+  constructor(private  http:HttpClient, private _router: Router) { }
 
   registerUser(user){
     return this.http.post<any>(this._registerUrl, user);
@@ -29,5 +30,10 @@ export class AuthService {
 
   getToken() {
     return localStorage.getItem("accessToken")
+  }
+
+  logoutUser(){
+    localStorage.removeItem("accessToken");
+    this._router.navigate(["/login"]);
   }
 }
