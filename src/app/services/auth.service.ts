@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import { Constants } from "../constants";
+import { Constants } from "../../constants";
 import { Observable } from 'rxjs';
 
 
@@ -21,5 +21,9 @@ export class AuthService {
 
   loginUser(user){
     return this.http.post<any>(this._loginUrl, user);
+  }
+
+  loggedIn() {
+    return localStorage.getItem("accessToken") ? true : false;
   }
 }

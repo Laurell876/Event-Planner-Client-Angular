@@ -1,3 +1,4 @@
+import { EventService } from './../services/event.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EventsComponent implements OnInit {
 
-  constructor() { }
+  events = [];
+  constructor(private _eventsService: EventService) { }
 
   ngOnInit(): void {
+    this._eventsService.getEvents()
+    .subscribe(
+      res=> this.events = res,
+      error => console.log(error)
+    )
   }
+
+
 
 }

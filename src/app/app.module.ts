@@ -1,4 +1,6 @@
-import { AuthService } from './auth.service';
+import { AuthGuard } from './auth.guard';
+import { EventService } from './services/event.service';
+import { AuthService } from './services/auth.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from "@angular/forms";
@@ -23,7 +25,7 @@ import { EventsComponent } from './events/events.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, EventService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

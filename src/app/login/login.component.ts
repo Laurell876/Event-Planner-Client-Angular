@@ -1,5 +1,6 @@
-import { AuthService } from './../auth.service';
+import { AuthService } from '../services/auth.service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from "@angular/router";
 
 
 @Component({
@@ -18,14 +19,17 @@ export class LoginComponent implements OnInit {
   }
 
 
-  constructor(private _auth: AuthService) { }
+  constructor(private _auth: AuthService, private _router: Router) { }
 
   ngOnInit(): void {}
   
   loginUser(){
     this._auth.loginUser(this.loginUserData)
     .subscribe(
-      res => console.log(res),
+      res =>  {
+        localStorage.setItem("accessToken", res.accessToken);
+        this._router.navigate(["/events"]);
+      },
       err => console.log(err)
     )
   }
